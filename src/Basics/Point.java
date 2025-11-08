@@ -2,7 +2,7 @@ package Basics;
 
 // a point has an x and a y value, and can measure the distance to other points, and if it is equal to another point.
 public class Point {
-    double x, y;
+    Double x, y;
 
     public Point(double x, double y) {
         this.x = x;

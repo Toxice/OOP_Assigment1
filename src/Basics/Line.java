@@ -72,7 +72,7 @@ public class Line {
         if (this.getSlope() == other.getSlope()) {
             return false;
         } else {
-
+            return IntersectionWith(other) == null;
         }
     }
 
@@ -90,8 +90,8 @@ public class Line {
 
             if (this.contains(intersectionPoint) && other.contains(intersectionPoint)) {
                 return intersectionPoint;
-            } else return null;
-        }
+            }
+        } return null;
     }
 
 
@@ -112,29 +112,6 @@ public class Line {
 
     private double calIntercept() {
         return this.getEnd().getY() - getSlope() * this.getEnd().getX();
-    }
-
-    /**
-     * Check's if other Line is contained in this Line
-     *
-     * @param other: Line Object
-     * @return true iff the Points of the other Line is contained in the Points of this Line
-     */
-    private boolean isLineContained(Line other) {
-//        return this.getStart().contains(other.getStart()) && this.getEnd().contains(other.getEnd());
-    }
-
-    /**
-     * Check's if Other Line is contained in this Line
-     * @param other: Line Object
-     * @return true iff the slopes of this Point and Other Point are equal, their b values are equal and the Other's Points are contained
-     * in this Line's Points
-     */
-    private boolean contains(Line other) {
-        if ((this.getSlope() == other.getSlope()) && (this.getIntercept() == other.getIntercept())) {
-            // if both lines have the same slope and same b point
-            return isLineContained(other);
-        } return false;
     }
 
     /**
