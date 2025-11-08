@@ -1,5 +1,7 @@
 package Basics;
 
+import java.util.Objects;
+
 /**
  * Line Object, made of two Point Objects
  * start - start Point
@@ -84,7 +86,7 @@ public class Line {
      */
     public Point IntersectionWith(Line other) {
         if (this.getSlope() != other.getSlope()) {
-            double _x = (this.getIntercept() - other.getIntercept() / (this.getSlope() - other.getSlope()));
+            double _x = ((other.getIntercept() - this.getIntercept()) / (this.getSlope() - other.getSlope()));
             double _y = this.getSlope() * _x + this.getIntercept();
             Point intersectionPoint = new Point(_x, _y);
 
@@ -94,19 +96,11 @@ public class Line {
         } return null;
     }
 
-
-    private boolean isTheSameLine(Line other) {
-        double b1 = this.getStart().getY() - this.getSlope() * this.getStart().getX();
-        double b2 = other.getStart().getY() - other.getSlope() * other.getStart().getX();
-        return (this.getSlope() == other.getSlope()) && (b1 == b2);
-    }
-
-
-    private double getSlope() {
+    public double getSlope() {
         return slope;
     }
 
-    private double getIntercept() {
+    public double getIntercept() {
         return this.intercept;
     }
 
@@ -119,7 +113,6 @@ public class Line {
      * @param point: Point object
      * @return true iff Line contains the Point
      */
-    private boolean contains(Point point) {
-        return getStart().biggerThan(point) && getEnd().smallerThan(point);
+    public boolean contains(Point point) {
     }
 }
