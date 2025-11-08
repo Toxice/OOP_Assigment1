@@ -1,5 +1,6 @@
 package Basics;
 
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -74,7 +75,7 @@ public class Line {
         if (this.getSlope() == other.getSlope()) {
             return false;
         } else {
-            return IntersectionWith(other) == null;
+            return IntersectionWith(other) != null;
         }
     }
 
@@ -86,9 +87,9 @@ public class Line {
      */
     public Point IntersectionWith(Line other) {
         if (this.getSlope() != other.getSlope()) {
-            double _x = ((other.getIntercept() - this.getIntercept()) / (this.getSlope() - other.getSlope()));
-            double _y = this.getSlope() * _x + this.getIntercept();
-            Point intersectionPoint = new Point(_x, _y);
+            double _x = ((other.getIntercept() - this.getIntercept()) / (this.getSlope() - other.getSlope())); // get X Value
+            double _y = this.getSlope() * _x + this.getIntercept(); // get Y Value
+            Point intersectionPoint = new Point(_x, _y); // get Full Point
 
             if (this.contains(intersectionPoint) && other.contains(intersectionPoint)) {
                 return intersectionPoint;
@@ -111,8 +112,16 @@ public class Line {
     /**
      * Check's if a Point is contained in this Line
      * @param point: Point object
-     * @return true iff Line contains the Point
+     * @return true iff the Point lies between the Line Perimeter and Matches the Line Equation
      */
     public boolean contains(Point point) {
+        if (point.getY() == this.getSlope() * point.getX() + this.getIntercept()) {
+            boolean X_Min = point.getX() >= Math.min(this.getStart().getX(), this.getEnd().getX());
+            boolean X_Max = point.getX() <= Math.max(this.getStart().getX(), this.getEnd().getX());
+            boolean Y_Min = point.getY() >= Math.min(this.getStart().getY(), this.getEnd().getY());
+            boolean Y_Max = point.getY() <= Math.max(this.getStart().getY(), this.getEnd().getY());
+
+            return X_Min && X_Max && Y_Min && Y_Max;
+        } return false;
     }
 }
