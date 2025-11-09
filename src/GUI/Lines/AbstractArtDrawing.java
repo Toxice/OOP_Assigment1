@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * Class Made for Plotting Lines and Points
  */
-public class LineGUI {
+public class AbstractArtDrawing {
     static Random random = new Random();
     static final String Title = "Assignment Part 2 - Lines and Points";
     static final int width = 800;
@@ -20,8 +20,8 @@ public class LineGUI {
     public static ArrayList<Line> getLines() {
         ArrayList<Line> lines = new ArrayList<>(10);
         for (int i = 0; i < 10; ++i) {
-            lines.add(createLine(random.nextInt(width) + 1, random.nextInt(height) + 1,
-                    random.nextInt(width) + 1, random.nextInt(height) + 1));
+            lines.add(createLine(random.nextInt(width / 2) + 1, random.nextInt(height / 2) + 1,
+                    random.nextInt(width / 2) + 1, random.nextInt(height / 2) + 1));
         }
         return lines;
     }
@@ -34,22 +34,19 @@ public class LineGUI {
         DrawSurface drawSurface = gui.getDrawSurface();
         for (int i = 0; i < 10; ++i) {
             // Lines Drawing Loop
-            drawSurface.setColor(Color.BLACK);
-            drawSurface.drawLine((int)lines.get(i).getStart().getX(), (int)lines.get(i).getStart().getY(),
-                    (int)lines.get(i).getEnd().getX(),(int)lines.get(i).getEnd().getY());
-            drawSurface.setColor(Color.BLUE);
-            drawSurface.fillCircle((int)lines.get(i).middle().getX(), (int)lines.get(i).middle().getY(), 3);
+            drawLine(lines.get(i), drawSurface);
+            drawMiddlePoint(lines.get(i), drawSurface);
         }
-
+        // Intersection Points Loop
         for (int i = 0; i < 10; ++i) {
             for (int j = 0; j < 10; ++j) {
                 if (i == j) continue;
-
                 if (lines.get(i).intersectionWith(lines.get(j)) != null) {
                     drawSurface.setColor(Color.RED);
                     drawSurface.fillCircle((int) lines.get(i).intersectionWith(lines.get(j))
                             .getX(),(int) lines.get(i).intersectionWith(lines.get(j))
-                            .getY(), 3 );
+                            .getY(), 4);
+                    System.out.println(lines.get(i).intersectionWith(lines.get(j)));
                 }
             }
         }
@@ -84,6 +81,17 @@ public class LineGUI {
      */
     public double returnMiddleY(Line line) {
         return line.middle().getY();
+    }
+
+    public static void drawLine(Line line, DrawSurface drawSurface) {
+        drawSurface.setColor(Color.BLACK);
+        drawSurface.drawLine((int) line.getStart().getX(), (int) line.getStart().getY(),
+                (int) line.getEnd().getX(), (int) line.getEnd().getY());
+    }
+
+    public static void drawMiddlePoint(Line line, DrawSurface drawSurface) {
+        drawSurface.setColor(Color.BLUE);
+        drawSurface.fillCircle((int) line.middle().getX(), (int) line.middle().getY(), 3);
     }
 }
 

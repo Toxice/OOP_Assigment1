@@ -5,6 +5,8 @@ package Basics;
 public class Point {
     double x,y;
 
+    private static final double EPS = 1e-9;
+
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
@@ -31,8 +33,7 @@ public class Point {
     }
 
     public boolean equals(Point other) {
-     double eps = 0.00001;
-     if ((this.getX() - other.getX()) < eps && (this.getY() - other.getY()) < eps) {
+     if ((this.getX() - other.getX()) < EPS && (this.getY() - other.getY()) < EPS) {
          return true;
      } else return false;
     }
