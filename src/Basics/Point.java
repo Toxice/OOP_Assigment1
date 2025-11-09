@@ -3,7 +3,7 @@ package Basics;
 
 // a point has an x and a y value, and can measure the distance to other points, and if it is equal to another point.
 public class Point {
-    double x, y;
+    double x,y;
 
     public Point(double x, double y) {
         this.x = x;
@@ -28,6 +28,13 @@ public class Point {
 
     public double getY() {
         return this.y;
+    }
+
+    public boolean equals(Point other) {
+     double eps = 0.00001;
+     if ((this.getX() - other.getX()) < eps && (this.getY() - other.getY()) < eps) {
+         return true;
+     } else return false;
     }
 
     @Override

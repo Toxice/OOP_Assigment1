@@ -35,7 +35,7 @@ public class Line {
     public Line(double x1, double y1, double x2, double y2) {
         this.start = new Point(x1, y1);
         this.end = new Point(x2, y2);
-        this.slope = (y2 - y1 / (x2 - x1));
+        this.slope = ((y2 - y1) / (x2 - x1));
         this.intercept = calIntercept();
     }
 
@@ -64,7 +64,7 @@ public class Line {
     }
 
     /**
-     * Meant to Check if This Line intersects if any other lines
+     * Check if This Line intersects with any other lines
      * @param other: Line Object
      * @return true iff This intersects with other Line, false otherwise
      */

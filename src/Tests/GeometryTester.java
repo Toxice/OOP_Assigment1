@@ -100,7 +100,7 @@ public class GeometryTester {
      */
     public static void main(String[] args) {
         GeometryTester tester = new GeometryTester();
-        if (tester.testPoint() && tester.testLine())
+         if (tester.testPoint() && tester.testLine())
             System.out.println("Test Completed Successfully!");
         else
             System.out.println("Found failing tests.");
