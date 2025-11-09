@@ -1,8 +1,5 @@
 package Basics;
 
-import java.util.Map;
-import java.util.Objects;
-
 /**
  * Line Object, made of two Point Objects
  * start - start Point
@@ -75,7 +72,7 @@ public class Line {
         if (this.getSlope() == other.getSlope()) {
             return false;
         } else {
-            return IntersectionWith(other) != null;
+            return intersectionWith(other) != null;
         }
     }
 
@@ -85,7 +82,7 @@ public class Line {
      * return if the point if so, return null otherwise
      * @return Point Object, may be null
      */
-    public Point IntersectionWith(Line other) {
+    public Point intersectionWith(Line other) {
         if (this.getSlope() != other.getSlope()) {
             double _x = ((other.getIntercept() - this.getIntercept()) / (this.getSlope() - other.getSlope())); // get X Value
             double _y = this.getSlope() * _x + this.getIntercept(); // get Y Value
@@ -123,5 +120,10 @@ public class Line {
 
             return X_Min && X_Max && Y_Min && Y_Max;
         } return false;
+    }
+
+    @Override
+    public String toString() {
+        return "(" +  this.getStart().toString() + "," + this.getEnd().toString() + ")";
     }
 }

@@ -29,4 +29,9 @@ public class Point {
     public double getY() {
         return this.y;
     }
+
+    @Override
+    public String toString() {
+        return "(" + this.getX() + "," + this.getY() + ")";
+    }
 }
