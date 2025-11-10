@@ -67,42 +67,39 @@ public class AbstractArtDrawing {
     }
 
     /**
-     * Returns the X coordinate of the Middle Point of a Line
-     * @param line: a Line
-     * @return the X coordinate of the middle Point
+     * Draws the Line to the DrawSurface
+     * @param line: Line Object
+     * @param drawSurface: DrawSurface Object
      */
-    public double returnMiddleX(Line line) {
-        return line.middle().getX();
-    }
-
-    /**
-     * Returns the Y coordinate of the Middle Point of a Line
-     * @param line: a Line
-     * @return the Y coordinate of the middle Point
-     */
-    public double returnMiddleY(Line line) {
-        return line.middle().getY();
-    }
-
     public static void drawLine(Line line, DrawSurface drawSurface) {
-        drawSurface.setColor(Color.BLACK);
         drawSurface.drawLine((int) line.getStart().getX(), (int) line.getStart().getY(),
                 (int) line.getEnd().getX(), (int) line.getEnd().getY());
     }
 
+    /**
+     * Draws the Middle Point of a Line
+     * @param line: Line Object
+     * @param drawSurface: DrawSurface Object
+     */
     public static void drawMiddlePoint(Line line, DrawSurface drawSurface) {
         drawSurface.setColor(Color.BLUE);
-        drawSurface.fillCircle((int) line.middle().getX(), (int) line.middle().getY(), 3);
+        drawSurface.fillCircle((int) Math.round(line.middle().getX()), (int) Math.round(line.middle().getY()), 3);
     }
 
-    public static void drawCircle(DrawSurface drawSurface) {
-        drawSurface.setColor(Color.GREEN);
-        drawSurface.fillCircle(random.nextInt(width / 2) + 1, random.nextInt(width / 2) + 1, 5);
-    }
-
-    public static void drawText(String s, DrawSurface drawSurface, Color color) {
-        drawSurface.setColor(color);
-        drawSurface.drawText(random.nextInt(width / 2) + 1, random.nextInt(height / 2) + 1, s, 10);
+    /**
+     * Draw the Lines
+     * @param lines: ArrayList of Lines
+     * @param drawSurface: DrawSurface Object
+     */
+    public static void drawLines(ArrayList<Line> lines, DrawSurface drawSurface) {
+        drawSurface.setColor(Color.BLACK);
+        for (int i = 0; i < lines.size(); ++i) {
+            for (int j = 0; j < lines.size(); ++j) {
+                if (i == j) continue;
+                drawLine(lines.get(i), drawSurface);
+                drawMiddlePoint(lines.get(i), drawSurface);
+            }
+        }
     }
 }
 
