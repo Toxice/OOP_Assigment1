@@ -47,6 +47,11 @@ public class AbstractArtDrawing {
         return new Line(x1, y1, x2, y2);
     }
 
+    /**
+     * Draws Lines to the DrawSurface
+     * @param lines: Line ArrayList
+     * @param drawSurface: DrawSurface Object
+     */
     public static void drawLines(ArrayList<Line> lines, DrawSurface drawSurface) {
         drawSurface.setColor(Color.BLACK);
         for (Line line : lines) {
@@ -58,20 +63,21 @@ public class AbstractArtDrawing {
 
     /**
      * Draws the Intersection Point of two Lines
-     *
      * @param intersectionPoints: Point ArrayList
      * @param drawSurface: DrawSurface Object
      */
     public static void drawIntersectionPoints(ArrayList<Point> intersectionPoints, DrawSurface drawSurface) {
         drawSurface.setColor(Color.RED);
         for (Point intersectionPoint : intersectionPoints) {
-            int ix = (int)intersectionPoint.getX();
-            int iy = (int)intersectionPoint.getY();
-            System.out.println("Draw Point at: (" + ix + "," + iy + ")");
             drawSurface.fillCircle((int)Math.round(intersectionPoint.getX()), (int)Math.round(intersectionPoint.getY()), 3);
         }
     }
 
+    /**
+     * Draws the Middle Points of all Lines
+     * @param middlePoints: Point ArrayList
+     * @param drawSurface: DrawSurface Object
+     */
     public static void drawMiddlePoints(ArrayList<Point> middlePoints, DrawSurface drawSurface) {
         drawSurface.setColor(Color.BLUE);
         for (Point middle : middlePoints) {
@@ -79,6 +85,10 @@ public class AbstractArtDrawing {
         }
     }
 
+    /**
+     * Set an ArrayList of Line Objects
+     * @return ArrayList of Lines
+     */
     public static ArrayList<Line> setLines() {
         ArrayList<Line> lines = new ArrayList<>();
         for (int i = 0; i < 10; ++i) {
@@ -88,6 +98,11 @@ public class AbstractArtDrawing {
         return lines;
     }
 
+    /**
+     * Sets the MiddlePoint ArrayList
+     * @param lines: Line Objects ArrayList
+     * @return ArrayList of Points
+     */
     public static ArrayList<Point> getMiddlePoints(ArrayList<Line> lines) {
         ArrayList<Point> middlePoints = new ArrayList<>(lines.size());
         for (Line line : lines) {
@@ -96,14 +111,31 @@ public class AbstractArtDrawing {
         return middlePoints;
     }
 
+    /**
+     * Check's if two lines intersects
+     * @param line: Line
+     * @param other: Line
+     * @return true if the two lines intersects, false otherwise
+     */
     public static boolean isIntersects(Line line, Line other) {
         return line.isIntersecting(other) && (line.intersectionWith(other) != null);
     }
 
+    /**
+     * Returns the intersection Point between two Line Objects
+     * @param line: Line Object
+     * @param other: Line Object
+     * @return Point that exist both in line and other
+     */
     public static Point getIntersectionPoint(Line line, Line other) {
         return line.intersectionWith(other);
     }
 
+    /**
+     * Sets the Intersection Points ArrayList
+     * @param lines: Line Objects ArrayList
+     * @return ArrayList of Intersection Points
+     */
     public static ArrayList<Point> getIntersectionPoints(ArrayList<Line> lines) {
         ArrayList<Point> intersectionPoints = new ArrayList<>();
         for (int i = 0; i < lines.size(); ++i) {
@@ -120,23 +152,6 @@ public class AbstractArtDrawing {
         }
         return intersectionPoints;
     }
-    /*
-    for (int i = 0; i < lines.size(); ++i) {
-    for (int j = i + 1; j < lines.size(); ++j) {   // <--- only check each unordered pair once
-        Line a = lines.get(i);
-        Line b = lines.get(j);
-        if (isIntersects(a, b)) {
-            Point p = getIntersectionPoint(a, b);
-            if (p != null) {
-                // optionally avoid adding duplicates:
-                if (!intersectionPoints.contains(p)) {
-                    intersectionPoints.add(p);
-                }
-            }
-        }
-    }
-}
-     */
 
 }
 
