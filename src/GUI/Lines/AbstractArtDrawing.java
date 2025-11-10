@@ -17,14 +17,6 @@ public class AbstractArtDrawing {
     static final int width = 800;
     static final int height = 600;
 
-    public static ArrayList<Line> getLines() {
-        ArrayList<Line> lines = new ArrayList<>(10);
-        for (int i = 0; i < 10; ++i) {
-            lines.add(createLine(random.nextInt(width / 2) + 1, random.nextInt(height / 2) + 1,
-                    random.nextInt(width / 2) + 1, random.nextInt(height / 2) + 1));
-        }
-        return lines;
-    }
     /**
      * Main Function
      */
@@ -51,7 +43,16 @@ public class AbstractArtDrawing {
             }
         }
         gui.show(drawSurface);
+    }
+
+    public static ArrayList<Line> getLines() {
+        ArrayList<Line> lines = new ArrayList<>(10);
+        for (int i = 0; i < 10; ++i) {
+            lines.add(createLine(random.nextInt(width / 2) + 1, random.nextInt(height / 2) + 1,
+                    random.nextInt(width / 2) + 1, random.nextInt(height / 2) + 1));
         }
+        return lines;
+    }
 
     /**
      * Creates a Line from x,y coordinates
@@ -61,7 +62,7 @@ public class AbstractArtDrawing {
      * @param y2: coordinate
      * @return a new Line
      */
-    public static Line createLine(int x1, int y1, int x2, int y2) {
+    public static Line createLine(double x1, double y1, double x2, double y2) {
         return new Line(x1, y1, x2, y2);
     }
 
@@ -92,6 +93,16 @@ public class AbstractArtDrawing {
     public static void drawMiddlePoint(Line line, DrawSurface drawSurface) {
         drawSurface.setColor(Color.BLUE);
         drawSurface.fillCircle((int) line.middle().getX(), (int) line.middle().getY(), 3);
+    }
+
+    public static void drawCircle(DrawSurface drawSurface) {
+        drawSurface.setColor(Color.GREEN);
+        drawSurface.fillCircle(random.nextInt(width / 2) + 1, random.nextInt(width / 2) + 1, 5);
+    }
+
+    public static void drawText(String s, DrawSurface drawSurface, Color color) {
+        drawSurface.setColor(color);
+        drawSurface.drawText(random.nextInt(width / 2) + 1, random.nextInt(height / 2) + 1, s, 10);
     }
 }
 
