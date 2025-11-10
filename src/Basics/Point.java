@@ -1,7 +1,8 @@
 package Basics;
 
-
-// a point has an x and a y value, and can measure the distance to other points, and if it is equal to another point.
+/**
+ * Point Object, made of two doubles: x value and a y value
+ */
 public class Point {
     double x,y;
 
