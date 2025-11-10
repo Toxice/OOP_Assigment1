@@ -53,21 +53,35 @@ public class Ball {
     }
 
     public void moveOneStep() {
-        this.Center = this.getVelocity().applyToPoint(this.Center);
+        Point nextPosition = this.getVelocity().applyToPoint(this.Center);
+        double nextX = nextPosition.getX();
+        double nextY = nextPosition.getY();
 
-        if (this.Center.getX() >= Width) {
-            this.velocity.setDx(-(this.velocity.getDx()));
-            return;
+        // Right Border
+        if (nextX + this.Radius > Width) {
+            // flip X velocity and move to just inside right boundary
+            this.velocity.setDx(-this.velocity.getDx());
+            nextX = Width - this.Radius;
         }
-        if (this.Center.getY() >= Height) {
-            this.velocity.setDy(-(this.velocity.getDy()));
+        // Left Border
+        else if (nextX - this.Radius < 0) {
+            this.velocity.setDx(-this.velocity.getDx());
+            nextX = this.Radius;
         }
-        if (this.Center.getX() <= -Width) {
-            this.velocity.setDx(-(this.velocity.getDx()));
+
+        // Bottom Border
+        if (nextY + this.Radius > Height) {
+            this.velocity.setDy(-this.velocity.getDy());
+            nextY = Height - this.Radius;
         }
-        if (this.Center.getY() <= -Height) {
-            this.velocity.setDy(-(this.velocity.getDy()));
+        // Top Border
+        else if (nextY - this.Radius < 0) {
+            this.velocity.setDy(-this.velocity.getDy());
+            nextY = this.Radius;
         }
+
+        // Finally, Update the Ball's Location
+        this.Center = new Point(nextX, nextY);
     }
 
     public void drawOn(DrawSurface drawSurface) {

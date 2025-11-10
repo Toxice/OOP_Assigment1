@@ -13,14 +13,14 @@ public class BouncingBallAnimation {
     final static String Title = "Part 2 - Bouncing Balls";
     final static int Width = 200;
     final static int Height = 200;
-   public static void main() {
-//        System.out.println("Enter 4 Integers");
-//        Scanner in = new Scanner(System.in);
-//        int xPoint = in.nextInt();
-//        int yPoint = in.nextInt();
-//        int dx = in.nextInt();
-//        int dy = in.nextInt();
-        drawAnimation(new Point(1,1), 1, 2);
+    static void main() {
+        System.out.println("Enter 4 Integers");
+        Scanner in = new Scanner(System.in);
+        int xPoint = in.nextInt();
+        int yPoint = in.nextInt();
+        int dx = in.nextInt();
+        int dy = in.nextInt();
+        drawAnimation(new Point(xPoint,yPoint), dx, dy);
     }
 
     static private void drawAnimation(Point start, double dx, double dy) {
