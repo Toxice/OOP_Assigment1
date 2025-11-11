@@ -1,5 +1,10 @@
 package Basics.LinesAndPoints;
 
+import biuoop.DrawSurface;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Line Object, made of two Point Objects
  * start - start Point
@@ -14,6 +19,9 @@ public class Line {
     private final double intercept;
 
     private static final double EPS = 1e-9; // same EPS as Point
+    private static final Random random = new Random();
+    static final int width = 800;
+    static final int height = 600;
 
     /**
      * Take two Point Objects and create a Line from them
@@ -109,7 +117,7 @@ public class Line {
     }
 
     /**
-     * Check's if a Point is contained in this Line
+     * Check's if a Point is contained in this Line, uses epsilon (Infi 1)
      * @param point: Point object
      * @return true iff the Point lies between the Line Perimeter and Matches the Line Equation
      */
@@ -132,17 +140,105 @@ public class Line {
                 && point.getY() >= minY && point.getY() <= maxY;
     }
 
+    private static Line createLine() {
+        double xS = random.nextDouble(width);
+        double yS = random.nextDouble(height);
+        double xE = random.nextDouble(width);
+        double yE = random.nextDouble(height);
+        return new Line(xS, yS, xE, yE);
+    }
+
     /**
-     * Creates a Line from x,y coordinates
-     *
-     * @param x1: coordinate
-     * @param y1: coordinate
-     * @param x2: coordinate
-     * @param y2: coordinate
-     * @return a new Line
+     * Draws this Line and its Middle Point
+     * @param drawSurface: DrawSurface Object
      */
-    public static Line createLine(double x1, double y1, double x2, double y2) {
-        return new Line(x1, y1, x2, y2);
+    private static void drawLines(ArrayList<Line> lines, DrawSurface drawSurface) {
+        drawSurface.setColor(Color.BLACK);
+        for (Line line : lines) {
+            drawSurface.drawLine((int) Math.round(line.getStart().getX()), (int) Math.round(line.getStart().getY()), (int) Math.round(line.getEnd().getX())
+                    , (int) Math.round(line.getEnd().getY()));
+        }
+    }
+
+    private static void drawMiddlePoints(ArrayList<Point> MiddlePoints, DrawSurface drawSurface) {
+        drawSurface.setColor(Color.BLUE);
+        for (Point middlePoint : MiddlePoints) {
+            drawSurface.fillCircle((int)Math.round(middlePoint.getX()), (int)Math.round(middlePoint.getY()), 3);
+        }
+    }
+
+    /**
+     * Check for intersecting Points and draws them to the DrawSurface
+     * @param Intersections: ArrayList of Points
+     * @param drawSurface: DrawSurface Object
+     */
+    private static void drawIntersections(ArrayList<Point> Intersections, DrawSurface drawSurface) {
+        drawSurface.setColor(Color.RED);
+        for (Point intersection : Intersections) {
+                    drawSurface.fillCircle((int) Math.round(intersection.getX()), (int) Math.round(intersection.getY()), 3);
+                }
+            }
+
+    /**
+     * Draws All the Objects to the DrawSurface
+     * @param drawSurface: DrawSurface Object
+     * @param lines: Line ArrayList
+     * @param MiddlePoints: Point ArrayList
+     * @param Intersections: Point ArrayList
+     */
+    private static void drawAll(DrawSurface drawSurface, ArrayList<Line> lines, ArrayList<Point> MiddlePoints, ArrayList<Point> Intersections) {
+        drawLines(lines, drawSurface);
+        drawMiddlePoints(MiddlePoints, drawSurface);
+        drawIntersections(Intersections, drawSurface);
+    }
+
+    /**
+     * Returns an Array of all the Lines Middle Points
+     * @param lines: Line ArrayList
+     * @return Middle Points ArrayList
+     */
+    public static ArrayList<Point> getMiddles(ArrayList<Line> lines) {
+        ArrayList<Point> points = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            points.add(lines.get(i).middle());
+        }
+        return points;
+    }
+
+    /**
+     * Checks for intersections and return an ArrayList of all of them
+     * @param lines: Line ArrayList
+     * @return Intersection Points ArrayList
+     */
+    public static ArrayList<Point> getIntersections(ArrayList<Line> lines) {
+        ArrayList<Point> points = new ArrayList<>();
+        for (int i = 0; i < lines.size(); i++) {
+            for (int j = i + 1; j < lines.size(); j++) {
+                if (lines.get(i).isIntersecting(lines.get(j)) && lines.get(i).intersectionWith(lines.get(j)) != null) {
+                    points.add(lines.get(i).intersectionWith(lines.get(j)));
+                }
+            }
+        }
+        return points;
+    }
+
+    public static ArrayList<Line> getLines() {
+        ArrayList<Line> lines = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            lines.add(createLine());
+        }
+        return lines;
+    }
+
+    /**
+     * Gets all DATA of the lines (Line Location, Middle Points, Intersection Points) and draws them to the DrawSurface
+     * @param drawSurface: DrawSurface Object
+     * @param lines: Line ArrayList
+     * @param MiddlePoints: Point ArrayList
+     * @param Intersections: Point ArrayList
+     */
+    public static void drawOn(DrawSurface drawSurface, ArrayList<Line> lines, ArrayList<Point> MiddlePoints, ArrayList<Point> Intersections) {
+        drawAll(drawSurface, lines, MiddlePoints, Intersections);
     }
 
     @Override
