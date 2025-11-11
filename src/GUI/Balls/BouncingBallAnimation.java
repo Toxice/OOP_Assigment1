@@ -10,8 +10,8 @@ import biuoop.*;
 
 public class BouncingBallAnimation {
     final static String Title = "Part 3 - Bouncing Balls";
-    final static int Width = 200;
-    final static int Height = 200;
+    final static int Width = 800;
+    final static int Height = 600;
     static void main(String[] args) {
         Point argPoint = new Point(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
         Velocity argVelocity = new Velocity(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
@@ -30,5 +30,14 @@ public class BouncingBallAnimation {
             gui.show(d);
             sleeper.sleepFor(50);  // wait for 50 milliseconds.
         }
+    }
+
+
+    public static int getWidth() {
+        return Width;
+    }
+
+    public static int getHeight() {
+        return Height;
     }
 }

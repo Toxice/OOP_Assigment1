@@ -152,7 +152,6 @@ public class AbstractArtDrawing {
         }
         return intersectionPoints;
     }
-
 }
 
 
