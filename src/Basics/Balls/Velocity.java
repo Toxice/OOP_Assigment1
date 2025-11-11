@@ -41,13 +41,13 @@ public class Velocity {
 
     /**
      * Creates a new Velocity using Angle and Speed (Vector)
-     * @param angle: angle
+     * @param angleInDegrees: angle
      * @param speed: speed
      * @return a new Velocity
      */
-    public static Velocity fromAngleAndSpeed(double angle, double speed) {
-        double dx = speed * Math.cos(Math.toDegrees(angle));
-        double dy = speed * Math.sin(Math.toRadians(angle));
+    public static Velocity fromAngleAndSpeed(double angleInDegrees, double speed) {
+        double dx = speed * Math.cos(Math.toRadians(angleInDegrees));
+        double dy = speed * Math.sin(Math.toRadians(angleInDegrees));
         return new Velocity(dx, dy);
     }
 

@@ -1,7 +1,6 @@
 package Basics.Balls;
 
 import Basics.LinesAndPoints.Point;
-import GUI.Balls.BouncingBallAnimation;
 import biuoop.DrawSurface;
 import java.awt.*;
 import java.util.Random;
@@ -17,8 +16,8 @@ public class Ball {
     Color color;
     Velocity velocity;
 
-    static final int Width = BouncingBallAnimation.getWidth();
-    static final int Height = BouncingBallAnimation.getHeight();
+    static final int Width = 800;
+    static final int Height = 600;
 
     /**
      * Point Constructor
@@ -95,27 +94,26 @@ public class Ball {
         double nextX = nextPosition.getX();
         double nextY = nextPosition.getY();
 
-        // Check for Left Border Collision
+        // Handle X collisions
         if (nextX + this.Radius > Width) {
             this.velocity.setDx(-this.velocity.getDx());
             nextX = Width - this.Radius;
         }
-        // Check for Right Border Collision
-        else if (nextX - this.Radius < 0) {
+        if (nextX - this.Radius < 0) {
             this.velocity.setDx(-this.velocity.getDx());
             nextX = this.Radius;
         }
-        // Check for Top Border Collision
+
+        // Handle Y collisions
         if (nextY + this.Radius > Height) {
             this.velocity.setDy(-this.velocity.getDy());
             nextY = Height - this.Radius;
         }
-        // Check for Bottom Border Collision
-        else if (nextY - this.Radius < 0) {
+        if (nextY - this.Radius < 0) {
             this.velocity.setDy(-this.velocity.getDy());
             nextY = this.Radius;
         }
-        // Finally, Update the Ball's Location
+
         this.Center = new Point(nextX, nextY);
     }
 
