@@ -59,10 +59,10 @@ public class Point {
     /**
      * Draws a Point to the DrawSurface by its state (Intersection Point or a Middle Point)
      * @param drawSurface: DrawSurface Object
-     * @param isIntersect: boolean - if true: draw the point as an intersection, else - draw as a middle point
+     * @param isIntersects: boolean - if true: draw the point as an intersection, else - draw as a middle point
      */
-    public void drawOn(DrawSurface drawSurface, boolean isIntersect) {
-        if (isIntersect) {
+    public void drawOn(DrawSurface drawSurface, boolean isIntersects) {
+        if (isIntersects) {
             drawSurface.setColor(Color.RED);
         } else drawSurface.setColor(Color.BLUE);
         drawSurface.fillCircle((int)Math.round(this.getX()), (int)Math.round(this.getY()), 3);

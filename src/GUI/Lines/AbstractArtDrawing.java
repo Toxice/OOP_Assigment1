@@ -24,13 +24,12 @@ public class AbstractArtDrawing {
         GUI gui = new GUI(Title, width, height);
         DrawSurface drawSurface = gui.getDrawSurface();
         ArrayList<Line> lines = new ArrayList<>();
-        ArrayList<Point> middlePoints = new ArrayList<>();
         // Create Random Lines and draw them and their middle points to the DrawSurface
         for (int i = 0; i < number_of_lines; i++) {
             lines.add(new Line(random));
             lines.get(i).drawOn(drawSurface);
-            middlePoints.add(lines.get(i).middle());
-            middlePoints.get(i).drawOn(drawSurface, false);
+            // Draw the middle point of every line to the DrawSurface
+            lines.get(i).middle().drawOn(drawSurface, false);
         }
         // Find All Intersections and draw them to the DrawSurface
         for (int i = 0; i < number_of_lines; i++) {

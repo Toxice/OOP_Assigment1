@@ -7,6 +7,7 @@ import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
 
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -60,7 +61,7 @@ public class MultipleBouncingBallsAnimation {
 
         while (true) {
             DrawSurface d = gui.getDrawSurface();
-            d.setColor(java.awt.Color.WHITE);
+            d.setColor(Color.WHITE);
             d.fillRectangle(0, 0, Width, Height);
 
             for (Ball ball : balls) {

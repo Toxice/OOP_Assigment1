@@ -13,9 +13,9 @@ public class BouncingBallAnimation {
     final static int Width = 800;
     final static int Height = 600;
     static void main(String[] args) {
-        Point argPoint = new Point(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        Point Point = new Point(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
         Velocity argVelocity = new Velocity(Integer.parseInt(args[2]), Integer.parseInt(args[3]));
-        drawAnimation(argPoint, argVelocity.getDx(), argVelocity.getDy());
+        drawAnimation(Point, argVelocity.getDx(), argVelocity.getDy());
     }
 
     static private void drawAnimation(Point start, double dx, double dy) {
@@ -30,14 +30,5 @@ public class BouncingBallAnimation {
             gui.show(d);
             sleeper.sleepFor(50);  // wait for 50 milliseconds.
         }
-    }
-
-
-    public static int getWidth() {
-        return Width;
-    }
-
-    public static int getHeight() {
-        return Height;
     }
 }
