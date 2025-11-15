@@ -21,6 +21,10 @@ public class AbstractArtDrawing {
     static final int number_of_lines = 10;
 
     static void main() {
+        drawStaticImage();
+    }
+
+    public static void drawStaticImage() {
         GUI gui = new GUI(Title, width, height);
         DrawSurface drawSurface = gui.getDrawSurface();
         ArrayList<Line> lines = new ArrayList<>();
@@ -40,7 +44,7 @@ public class AbstractArtDrawing {
                 }
             }
         }
-      gui.show(drawSurface);
+        gui.show(drawSurface);
     }
 }
 
