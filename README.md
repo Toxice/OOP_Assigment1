@@ -1,6 +1,6 @@
 🎾 Java 2D Ball & Geometry Animation
 
-A lightweight Java animation and geometry engine that simulates bouncing balls, multi-frame physics environments, and geometric computations, built using pure Java (with biuoop-1.4 library for rendering).
+A lightweight Java animation and geometry engine that simulates balls whi bounce against surfaces, multi-frame balls environments, and geometric computations, built using pure Java (with biuoop-1.4 library for rendering).
 
 This project demonstrates:
 
